@@ -1,6 +1,21 @@
 @charset "ISO-8859-1";
 
-.imagen-fondo{
-	position: absolute;
-	width: 100%;
+/* ----------- Ingreso de código ----------- */
+
+.imagen-fondo {
+	position: fixed;
+	min-width: 100%;
+	min-height: 100%;
+	max-width: 200%;
+	max-height: 100%;
+}
+
+.body-style {
+	overflow-x: hidden;
+	overflow-y: hidden;
+}
+
+.btn-consulta {
+	background-color: #e28537;
+	border-color: #e28537;
 }
