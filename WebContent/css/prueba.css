@@ -1,0 +1,29 @@
+@charset "ISO-8859-1";
+
+.boton-login {
+	margin-top: 3px;
+	margin-bottom: 10px;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	padding-right: 8px;
+	padding-left: 8px;
+	background-color: #008028;
+	border-color: #008028;
+}
+
+.card-text-align {
+	text-align: center;
+}
+
+.links-footer {
+	color: #ffffff !important;
+	font-size: 18px;
+}
+
+.links-footer:hover {
+	font-weight: 500 !important;
+}
+
+.margin-top-16 {
+	margin-top: 16px;
+}
