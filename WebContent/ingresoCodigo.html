@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Coming Soon - Start Bootstrap Theme</title>
+    <title>Sara S.A.</title>
 
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -35,12 +35,12 @@
         <div class="row h-100">
           <div class="col-12 my-auto">
             <div class="masthead-content text-white py-5 py-md-0">
-              <h1 class="mb-3">Logística</h1>
-              <p class="mb-5">Bienvenido al sitio de consulta de estado de pedidos. <br>Ingresá el código de seguimiento que te enviamos por mail.</p>
+              <h1 class="mb-2">SARA S.A. Logística</h1>
+              <p class="mb-3">Bienvenido al sitio de consulta de estado de pedidos. Ingresá el código de seguimiento.</p>
               <div class="input-group input-group-newsletter">
-                <input type="email" class="form-control" placeholder="Código de seguimiento" aria-label="Código de seguimiento" aria-describedby="basic-addon">
+                <input ng-model="codigoSeguimiento" class="form-control" placeholder="Código de seguimiento" aria-label="Código de seguimiento" aria-describedby="basic-addon">
                 <div class="input-group-append">
-                  <button class="btn btn-secondary btn-consulta" type="button">Consultar</button>
+                  <button class="btn btn-secondary btn-consulta" ng-click="consultarCodigo()" type="button" >Consultar</button>
                 </div>
               </div>
             </div>
