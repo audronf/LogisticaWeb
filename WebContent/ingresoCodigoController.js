@@ -1,7 +1,8 @@
 var app = angular.module('myApp', []).controller('ingresoCodigoController',
-		ingresoCodigoController);
+		['$scope', '$http', '$state','ui.router', ingresoCodigoController])
+;
 
-function ingresoCodigoController($scope, $http) {
+function ingresoCodigoController($scope, $http, $state) {
 
 	$scope.consultarCodigo = function() {
 		$http(
