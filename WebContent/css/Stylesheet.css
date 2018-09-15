@@ -56,3 +56,19 @@
 	padding-left: 180px;
 	padding-right: 180px;
 }
+
+.info-format {
+	font-size: 1.8rem;
+	text-transform : initial;
+}
+
+.incidencia-format {
+	font-size: 1.3rem;
+	color: #FF0000;
+	text-align: center;
+}
+
+.fin-format{
+	font-size: 1rem;
+	text-align: center;
+}

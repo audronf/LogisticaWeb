@@ -9,6 +9,10 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
+ <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.0/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.0/angular-route.js"></script>
+<script src="consultaPedidoController.js"></script>	
+
 <title>SARA S.A.</title>
 
 <!-- Bootstrap core CSS -->
@@ -30,7 +34,7 @@
 
 </head>
 
-<body>
+<body class="body-style" ng-app="myApp" ng-controller="consultaPedidoController" ng-init="init()">
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
 		<div class="container">
 			<a class="navbar-brand" href="#">SARA S.A.</a>
@@ -41,9 +45,9 @@
 			</button>
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav ml-auto">
-					<li class="nav-item"><a class="nav-link" href="#">¿Quiénes
+					<li class="nav-item"><a class="nav-link" href="#" data-toggle="modal" data-target="#modalQuienesSomos">¿Quiénes
 							somos?</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">Ingresar
+					<li class="nav-item"><a class="nav-link" href="/Web/ingresoCodigo.html">Ingresar
 							código</a></li>
 				</ul>
 			</div>
@@ -51,45 +55,83 @@
 	</nav>
 	<div class="container">
 		<div class="form-group row margin-top-60">
-			<div ng-if="" class="col-lg-12">
-				<img class="imagen-estado" src="img/estado1.jpg">
+			<div ng-if="pedido.estado=='En depósito'" class="col-lg-12">
+				<img class="imagen-estado" ng-src="img/estado1.jpg">
 			</div>
-			<div class="col-lg-12">
-				<img class="imagen-estado" src="img/estado2.jpg">
+			<div ng-if="pedido.estado=='En camino'" class="col-lg-12">
+				<img class="imagen-estado" ng-src="img/estado2.jpg">
 			</div>
-			<div ng-if="" class="col-lg-12">
-				<img class="imagen-estado" src="img/estado3.jpg">
+			<div ng-if="pedido.estado=='Entregado'" class="col-lg-12">
+				<img class="imagen-estado" ng-src="img/estado3.jpg">
 			</div>
 		</div>
 		<div class="form-group row">
 			<div class="col-lg-12 padding-180">
 				<h3 class="display-4 no-margin">
-					Pedido <span class="color-verde">#0081810</span>
+					Pedido <span class="color-verde">#{{codigoSeguimiento}}</span>
 				</h3>
-				<h2 class="display-4">
-					Estado: <span class="color-verde">En depósito</span>
+				<h2 ng-if="pedido.estado=='En depósito'" class="display-4">
+					Estado: <span class="color-verde">En depósito desde el
+						{{pedido.fechaIngreso | date:'dd/MM/yyyy'}}</span>
 				</h2>
-				<h2 class="display-4">
-					Estado: <span class="color-verde">En camino</span>
+				<h2 ng-if="pedido.estado=='En camino'" class="display-4">
+					Estado: <span class="color-verde">En camino desde el
+						{{pedido.fechaSalida}}</span>
 				</h2>
-				<h2 class="display-4">
-					Estado: <span class="color-verde">Entregado</span>
+				<h2 ng-if="pedido.estado=='Entregado'" class="display-4">
+					Estado: <span class="color-verde">Entregado el día
+						{{pedido.fechaEntrega}}</span>
 				</h2>
+				<h2 ng-if="pedido.estado=='No existe'" class="display-4">El
+					código ingresado es incorrecto.</h2>
+			</div>
+		</div>
+		<div ng-if="pedido.estado!='No existe'"
+			class="form-group row no-margin">
+			<div class="col-lg-12 padding-180">
+				<h4 ng-if="pedido.estado!='No existe'" class="info-format">
+					Tu pedido: <span class="color-verde">{{pedido.informacion}}</span>
+				</h4>
+				<h4 ng-if="pedido.estado!='No existe'" ng-if="pedido.fragil==true"
+					class="info-format color-verde">Frágil</h4>
+				<h4 ng-if="pedido.logistica==true" ng-if="pedido.estado!='No existe'" class="info-format color-verde">
+					Requiere de logística</h4>
+				<h4 ng-if="pedido.incidencia!=null" class="info-format">
+					Lamentablemente no se pudo entregar el pedido. El motivo es:
+				</h4>
+				<p ng-if="pedido.incidencia!=null" class="incidencia-format">{{pedido.incidencia}}</p>
+				<h4 ng-if="pedido.incidencia!=null" class="info-format">Se
+					envió un correo a {{pedido.cliente.email}} para concretar otra
+					entrega.</h4>
+				<p ng-if="pedido.incidencia==null" class="fin-format">
+					Ante cualquier incidencia, nos pondremos en contacto enviándote un
+					correo a <span class="color-verde">{{pedido.cliente.email}}</span>
+				</p>
 			</div>
 		</div>
 	</div>
 
+	<div class="modal fade" id="modalQuienesSomos" role="dialog">
+		<div class="modal-dialog">
+
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="col-12">
+					<p class="fin-format">Quiénes sómos</p>
+				</div>
+			</div>
+		</div>
+	</div>
 
 	<!-- Bootstrap core JavaScript -->
-	<script src="vendor/jquery/jquery.min.js"></script>
-	<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+			<script src="vendor/jquery/jquery.min.js"></script>
+			<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-	<!-- Plugin JavaScript -->
-	<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+			<!-- Plugin JavaScript -->
+			<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
-	<!-- Custom scripts for this template -->
-	<script src="js/resume.min.js"></script>
-
+			<!-- Custom scripts for this template -->
+			<script src="js/resume.min.js"></script>
 </body>
 
 </html>
