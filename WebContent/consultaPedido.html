@@ -55,13 +55,13 @@
 	</nav>
 	<div class="container">
 		<div class="form-group row margin-top-60">
-			<div ng-if="pedido.estado=='En depósito'" class="col-lg-12">
+			<div ng-if="pedido.fechaIngreso !== null && pedido.fechaSalida === null && pedido.fechaEntrega === null" class="col-lg-12">
 				<img class="imagen-estado" ng-src="img/enDeposito.png">
 			</div>
-			<div ng-if="pedido.estado=='En camino'" class="col-lg-12">
+			<div ng-if="pedido.fechaSalida !== null && pedido.fechaEntrega === null" class="col-lg-12">
 				<img class="imagen-estado" ng-src="img/enCamino.png">
 			</div>
-			<div ng-if="pedido.estado=='Entregado'" class="col-lg-12">
+			<div ng-if="pedido.fechaEntrega !== null" class="col-lg-12">
 				<img class="imagen-estado" ng-src="img/entregaPedido.png">
 			</div>
 		</div>
@@ -70,15 +70,15 @@
 				<h3 class="display-4 no-margin">
 					Pedido <span class="color-verde">#{{codigoSeguimiento}}</span>
 				</h3>
-				<h2 ng-if="pedido.estado=='En depósito'" class="display-4">
+				<h2 ng-if="pedido.fechaIngreso !== null && pedido.fechaSalida === null && pedido.fechaEntrega === null" class="display-4">
 					Estado: <span class="color-verde">En depósito desde el
 						{{pedido.fechaIngreso | date:'dd/MM/yyyy'}}</span>
 				</h2>
-				<h2 ng-if="pedido.estado=='En camino'" class="display-4">
+				<h2 ng-if="pedido.fechaSalida !== null && pedido.fechaEntrega === null" class="display-4">
 					Estado: <span class="color-verde">En camino desde el
 						{{pedido.fechaSalida}}</span>
 				</h2>
-				<h2 ng-if="pedido.estado=='Entregado'" class="display-4">
+				<h2 ng-if="pedido.fechaEntrega !== null" class="display-4">
 					Estado: <span class="color-verde">Entregado el día
 						{{pedido.fechaEntrega}}</span>
 				</h2>
