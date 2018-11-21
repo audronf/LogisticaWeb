@@ -72,3 +72,11 @@
 	font-size: 1rem;
 	text-align: center;
 }
+html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+}
+#map_div {
+        height: 480px;
+}

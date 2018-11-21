@@ -9,9 +9,13 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.0/angular.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.0/angular-route.js"></script>
-<script src="consultaPedidoController.js"></script>	
+<script
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.0/angular.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.0/angular-route.js"></script>
+<script src="consultaPedidoController.js"></script>
+ <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBJTXXXN93aI1gsXGfaBlOFZmPa0f7FrZ0" ></script>
+ 
 
 <title>SARA S.A.</title>
 
@@ -34,7 +38,8 @@
 
 </head>
 
-<body class="body-style" ng-app="myApp" ng-controller="consultaPedidoController" ng-init="init()">
+<body class="body-style" ng-app="myApp"
+	ng-controller="consultaPedidoController" ng-init="init()">
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
 		<div class="container">
 			<a class="navbar-brand" href="#">SARA S.A.</a>
@@ -45,20 +50,25 @@
 			</button>
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav ml-auto">
-					<li class="nav-item"><a class="nav-link" href="#" data-toggle="modal" data-target="#modalQuienesSomos">¿Quiénes
+					<li class="nav-item"><a class="nav-link" href="#"
+						data-toggle="modal" data-target="#modalQuienesSomos">¿Quiénes
 							somos?</a></li>
-					<li class="nav-item"><a class="nav-link" href="/Web/ingresoCodigo.html">Ingresar
-							código</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="/Web/ingresoCodigo.html">Ingresar código</a></li>
 				</ul>
 			</div>
 		</div>
 	</nav>
 	<div class="container">
 		<div class="form-group row margin-top-60">
-			<div ng-if="pedido.fechaIngreso !== null && pedido.fechaSalida === null && pedido.fechaEntrega === null" class="col-lg-12">
+			<div
+				ng-if="pedido.fechaIngreso !== null && pedido.fechaSalida === null && pedido.fechaEntrega === null"
+				class="col-lg-12">
 				<img class="imagen-estado" ng-src="img/enDeposito.png">
 			</div>
-			<div ng-if="pedido.fechaSalida !== null && pedido.fechaEntrega === null" class="col-lg-12">
+			<div
+				ng-if="pedido.fechaSalida !== null && pedido.fechaEntrega === null"
+				class="col-lg-12">
 				<img class="imagen-estado" ng-src="img/enCamino.png">
 			</div>
 			<div ng-if="pedido.fechaEntrega !== null" class="col-lg-12">
@@ -70,11 +80,15 @@
 				<h3 class="display-4 no-margin">
 					Pedido <span class="color-verde">#{{codigoSeguimiento}}</span>
 				</h3>
-				<h2 ng-if="pedido.fechaIngreso !== null && pedido.fechaSalida === null && pedido.fechaEntrega === null" class="display-4">
+				<h2
+					ng-if="pedido.fechaIngreso !== null && pedido.fechaSalida === null && pedido.fechaEntrega === null"
+					class="display-4">
 					Estado: <span class="color-verde">En depósito desde el
 						{{pedido.fechaIngreso | date:'dd/MM/yyyy'}}</span>
 				</h2>
-				<h2 ng-if="pedido.fechaSalida !== null && pedido.fechaEntrega === null" class="display-4">
+				<h2
+					ng-if="pedido.fechaSalida !== null && pedido.fechaEntrega === null"
+					class="display-4">
 					Estado: <span class="color-verde">En camino desde el
 						{{pedido.fechaSalida}}</span>
 				</h2>
@@ -94,11 +108,11 @@
 				</h4>
 				<h4 ng-if="pedido.estado!='No existe'" ng-if="pedido.fragil==true"
 					class="info-format color-verde">Frágil</h4>
-				<h4 ng-if="pedido.logistica==true" ng-if="pedido.estado!='No existe'" class="info-format color-verde">
+				<h4 ng-if="pedido.logistica==true"
+					ng-if="pedido.estado!='No existe'" class="info-format color-verde">
 					Requiere de logística</h4>
 				<h4 ng-if="pedido.incidencia!=null" class="info-format">
-					Lamentablemente no se pudo entregar el pedido. El motivo es:
-				</h4>
+					Lamentablemente no se pudo entregar el pedido. El motivo es:</h4>
 				<p ng-if="pedido.incidencia!=null" class="incidencia-format">{{pedido.incidencia}}</p>
 				<h4 ng-if="pedido.incidencia!=null" class="info-format">Se
 					envió un correo a {{pedido.cliente.email}} para concretar otra
@@ -109,6 +123,9 @@
 				</p>
 			</div>
 		</div>
+
+		<div ng-if="pedido.fechaSalida !== null && pedido.fechaEntrega === null" id="map_div"></div>
+
 	</div>
 
 	<div class="modal fade" id="modalQuienesSomos" role="dialog">
@@ -124,14 +141,14 @@
 	</div>
 
 	<!-- Bootstrap core JavaScript -->
-			<script src="vendor/jquery/jquery.min.js"></script>
-			<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script src="vendor/jquery/jquery.min.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-			<!-- Plugin JavaScript -->
-			<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+	<!-- Plugin JavaScript -->
+	<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
-			<!-- Custom scripts for this template -->
-			<script src="js/resume.min.js"></script>
+	<!-- Custom scripts for this template -->
+	<script src="js/resume.min.js"></script>
 </body>
 
 </html>
